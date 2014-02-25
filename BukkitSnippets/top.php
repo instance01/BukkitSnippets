@@ -5,7 +5,7 @@ include("config.php");
 // mysql connect
 connect();
 
-$result = mysql_query("SELECT * FROM snippets ORDER BY id desc limit 100") or die(mysql_error()); 
+$result = mysql_query("SELECT * , upvotes - downvotes AS x FROM snippets ORDER BY x DESC LIMIT 100") or die(mysql_error()); 
 
 $currentpost = "";
 $count = 0;

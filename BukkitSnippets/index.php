@@ -25,8 +25,8 @@ connect();
       <div class="container">
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a id="toplist" href="#">Top</a></li>
-            <li class="active"><a id="latestlist" href="#">Latest</a></li>
+            <li id="tab0"><a id="toplist" href="#">Top</a></li>
+            <li id="tab1" class="active"><a id="latestlist" href="#">Latest</a></li>
             <!--<li><a href="http://instancelabs.eu5.org/">About</a></li>-->
           </ul>
         </div>
@@ -58,14 +58,19 @@ $(document).ready(function(e) {
 	$("#latestlist").click(function(){
 		$("#current").load('latest.php');
 		$.getScript("prettify/run_prettify.js?skin=desert");
+		$("#tab0").removeClass("active");
+		$("#tab1").addClass("active");
 	});
 	$("#toplist").click(function(){
 		$("#current").load('top.php');
 		$.getScript("prettify/run_prettify.js?skin=desert");
+		$("#tab1").removeClass("active");
+		$("#tab0").addClass("active");
 	});
 });
 
 </script>
+<script src="prettify/run_prettify.js?skin=desert"></script>
 <script src="js/bootstrap.js"></script>
 </body>
 </html>
