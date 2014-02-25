@@ -1,0 +1,4 @@
+BukkitSnippets
+==============
+
+The BukkitSnippets website
