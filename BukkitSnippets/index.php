@@ -16,11 +16,9 @@ connect();
 <title>BukkitSnippets</title>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/instancelabs.css" rel="stylesheet">
-<script src="prettify/run_prettify.js?skin=desert"></script>
 </head>
 
 <body>
-
 <div class="navbar-wrapper">
   <div class="container">
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -36,36 +34,11 @@ connect();
     </div>
   </div>
 </div>
+<div class="container">
 
-<div class="container"> 
+  <div id="current">
   
-<?php
-$result = mysql_query("SELECT * FROM snippets ORDER BY id") or die(mysql_error()); 
-
-$currentpost = "";
-$count = 0;
-while($row = mysql_fetch_array($result)){
-    $p0 = $row['id'];
-    $p1 = $row['title'];
-    $p3 = $row['code'];
-    $up = $row['upvotes'];
-    $down = $row['downvotes'];
-    $date = $row['date'];
-    
-    $label = "success";
-    
-    if($down > $up){
-        $label = "danger";    
-    }
-    
-    $currentpost = '<div class="row">';
-    $currentpost .= '<div class="col-md-6 col-md-offset-3 well"><div class="col-md-1"><h4><span class="label label-' . $label . '">'.($up - $down).'</span></h4></div><div class="col-md-11"><h3>'.$p1.'</h3>';
-    $currentpost .= '<p><pre class="prettyprint lang-java linenums:0">' . $p3 . '</pre></p></div></div></div><br>';
-    echo($currentpost);
-    $count += 1;
-}
-
-?>
+  </div>
   <hr>
   <footer>
     <div class="row">
@@ -75,7 +48,24 @@ while($row = mysql_fetch_array($result)){
     </div>
   </footer>
 </div>
+
 <script src="js/jquery.js"></script> 
+<script type="text/javascript">
+
+$(document).ready(function(e) {
+	$("#current").load('latest.php');
+	$.getScript("prettify/run_prettify.js?skin=desert");
+	$("#latestlist").click(function(){
+		$("#current").load('latest.php');
+		$.getScript("prettify/run_prettify.js?skin=desert");
+	});
+	$("#toplist").click(function(){
+		$("#current").load('top.php');
+		$.getScript("prettify/run_prettify.js?skin=desert");
+	});
+});
+
+</script>
 <script src="js/bootstrap.js"></script>
 </body>
 </html>
